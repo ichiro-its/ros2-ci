@@ -4,6 +4,13 @@ author: "Alfi Maulana"
 branding:
   icon: "box"
   color: "gray-dark"
+inputs:
+  ros2-distro:
+    description: "The ROS 2 distribution to be used."
+    required: false
+    default: "foxy"
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker/Dockerfile'
+  args:
+    - ${{ inputs.ros2-distro }}
