@@ -1,6 +1,10 @@
-FROM docker:latest
+ARG ROS2_DISTRO=foxy
 
-COPY ros2 /ros2
+FROM ros:${ROS2_DISTRO}
+
+ARG ROS2_DISTRO
+
+COPY . /ws
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

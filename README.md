@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
       - name: Build and test
-        uses: threeal/ros2-ci@v0.2.0
+        uses: threeal/ros2-ci@v0.2.1
         with:
           ros2-distro: foxy
 ```
