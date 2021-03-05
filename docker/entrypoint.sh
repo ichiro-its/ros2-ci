@@ -3,7 +3,7 @@
 dockerd-entrypoint.sh &
 sleep 10
 
-mkdir "/ros2/ws" && cp -r "${GITHUB_REPOSITORY}" "/ros2/ws" || exit $?
+mkdir "/ros2/ws" && cp -r "${GITHUB_WORKSPACE}" "/ros2/ws" || exit $?
 
 docker build \
   --build-arg ROS2_DISTRO="$1" \
