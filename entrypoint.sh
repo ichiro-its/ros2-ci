@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source /opt/ros/foxy/setup.sh && mkdir /ws && cd /ws || exit $?
+cd "$GITHUB_WORKSPACE" && cd .. || exit $?
 
-mv "$GITHUB_WORKSPACE" . || $?
+source /opt/ros/foxy/setup.sh || exit $?
 
 colcon build --event-handlers console_cohesion+ --cmake-args --symlink-install || exit $?
 
