@@ -1,0 +1,5 @@
+name: 'ROS 2 CI'
+description: 'Continuous integration for ROS 2 project'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
