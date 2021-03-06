@@ -1,11 +1,12 @@
 #!/bin/bash
 
 echo '======== Loading the ROS 2 environment ========'
-source /opt/ros/${ROS2_DISTRO}/setup.sh || exit $?
+CMD='source /opt/ros/${ROS2_DISTRO}/setup.sh'
+echo "$CMD" && eval "$CMD" || exit $?
 
 if [ ! -z "$PRE_BUILD" ]; then
   echo '======== Running the pre-build command ========'
-  eval "$PRE_BUILD" || exit $?
+  echo "$PRE_BUILD" && eval "$PRE_BUILD" || exit $?
 fi
 
 echo '======== Building the workspace ========'
@@ -16,12 +17,12 @@ cd /ws && colcon build \
 
 if [ ! -z "$POST_BUILD" ]; then
   echo '======== Running the post-build command ========'
-  eval "$POST_BUILD" || exit $?
+  echo "$POST_BUILD" && eval "$POST_BUILD" || exit $?
 fi
 
 if [ ! -z "$PRE_TEST" ]; then
   echo '======== Running the pre-test command ========'
-  eval "$PRE_TEST" || exit $?
+  echo "$PRE_TEST" && eval "$PRE_TEST" || exit $?
 fi
 
 echo '======== Testing the workspace ========'
@@ -32,5 +33,5 @@ cd /ws && colcon test \
 
 if [ ! -z "$POST_TEST" ]; then
   echo '======== Running the post-test command ========'
-  eval "$POST_TEST" || exit $?
+  echo "$POST_TEST" && eval "$POST_TEST" || exit $?
 fi
