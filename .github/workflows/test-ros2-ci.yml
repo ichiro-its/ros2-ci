@@ -19,7 +19,8 @@ jobs:
         uses: ./
         with:
           ros2-distro: rolling
-      - name: Test with command
+      - name: Test with commands
+        uses: ./
         with:
           pre-build: FOO=fofofo
           post-build: test "${FOO}" = 'fofofo'
