@@ -1,6 +1,6 @@
 name: 'ROS 2 CI'
 description: 'Continuous integration for ROS 2 project'
-author: "Alfi Maulana"
+author: "Ichiro ITS"
 branding:
   icon: "box"
   color: "gray-dark"
