@@ -22,7 +22,7 @@ jobs:
       - name: Test with commands
         uses: ./
         with:
-          pre-build: FOO=fofofo
-          post-build: test "${FOO}" = 'fofofo'
-          pre-test: GOO=gogogo
-          post-test: test "${FOO}${GOO}" = 'fofofogogogo'
+          pre-build: apt-get update && apt-get install -y neofetch
+          post-build: neofetch
+          pre-test: FOO=fofofo
+          post-test: test "${FOO}" = 'fofofo'
