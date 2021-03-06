@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
       - name: Build and test
-        uses: threeal/ros2-ci@v0.3.0
+        uses: ichiro-its/ros2-ci@v0.3.0
         with:
           ros2-distro: foxy
           pre-build: apt-get update && apt-get install -y libssl-dev
