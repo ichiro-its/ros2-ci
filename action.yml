@@ -9,8 +9,24 @@ inputs:
     description: "The ROS 2 distribution to be used."
     required: false
     default: "foxy"
+  pre-build:
+    description: "Command to be run before the build process."
+    required: false
+  post-build:
+    description: "Command to be run after the build process."
+    required: false
+  pre-test:
+    description: "Command to be run before the test process."
+    required: false
+  post-test:
+    description: "Command to be run after the test process."
+    required: false
 runs:
   using: 'docker'
-  image: 'docker/Dockerfile'
+  image: 'dind/Dockerfile'
   args:
-    - ${{ inputs.ros2-distro }}
+    - '${{ inputs.ros2-distro }}'
+    - '${{ inputs.pre-build }}'
+    - '${{ inputs.post-build }}'
+    - '${{ inputs.pre-test }}'
+    - '${{ inputs.post-test }}'

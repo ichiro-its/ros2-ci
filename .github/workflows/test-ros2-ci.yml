@@ -7,11 +7,27 @@ on:
     branches:
       - master
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
-    name: Build and test the ROS 2 CI
+    name: Test the ROS 2 CI
     steps:
       - name: Checking out
         uses: actions/checkout@v2.3.4
+<<<<<<< HEAD
       - name: Test the ROS 2 CI
         uses: ./
+=======
+      - name: Test the default configuration
+        uses: ./
+      - name: Test with different distribution
+        uses: ./
+        with:
+          ros2-distro: rolling
+      - name: Test with commands
+        uses: ./
+        with:
+          pre-build: apt-get update && apt-get install -y neofetch
+          post-build: neofetch
+          pre-test: FOO=fofofo
+          post-test: test "${FOO}" = 'fofofo'
+>>>>>>> master

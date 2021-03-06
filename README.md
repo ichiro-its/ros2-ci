@@ -22,9 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
       - name: Build and test
-        uses: threeal/ros2-ci@v0.2.2
+        uses: threeal/ros2-ci@v0.3.0
         with:
           ros2-distro: foxy
+          pre-build: apt-get update && apt-get install -y libssl-dev
 ```
 > For more information, see [action.yml](./action.yml) and [this guide](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions).
 
