@@ -7,11 +7,21 @@ on:
     branches:
       - master
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
-    name: Build and test the ROS 2 CI
+    name: Test the ROS 2 CI
     steps:
       - name: Checking out
         uses: actions/checkout@v2.3.4
-      - name: Test the ROS 2 CI
+      - name: Test the default configuration
         uses: ./
+      - name: Test with different distribution
+        uses: ./
+        with:
+          ros2-distro: rolling
+      - name: Test with command
+        with:
+          pre-build: FOO=fofofo
+          post-build: test "${FOO}" = 'fofofo'
+          pre-test: GOO=gogogo
+          post-test: test "${FOO}${GOO}" = 'fofofogogogo'
