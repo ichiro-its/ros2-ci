@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ls -R /ws || exit $?
+
 echo "loading the ROS 2 ${ROS2_DISTRO} environment..."
 eval "source /opt/ros/${ROS2_DISTRO}/setup.sh" || exit $?
 
@@ -18,12 +20,6 @@ echo ''
 cd /ws && colcon build \
   --event-handlers console_cohesion+ \
   --cmake-args || exit $?
-
-echo 'copying the build result...'
-mkdir -p /ws/repo/.ws || exit $?
-cp -r /ws/build /ws/repo/.ws || exit $?
-cp -r /ws/log /ws/repo/.ws || exit $?
-cp -r /ws/install /ws/repo/.ws || exit $?
 
 if [ ! -z "$POST_BUILD" ]; then
   echo ''
@@ -57,3 +53,9 @@ if [ ! -z "$POST_TEST" ]; then
 
   echo "$POST_TEST" && eval "$POST_TEST" || exit $?
 fi
+
+echo 'copying the build result...'
+mkdir -p /ws/repo/.ws || exit $?
+cp -r /ws/build /ws/repo/.ws || exit $?
+cp -r /ws/log /ws/repo/.ws || exit $?
+cp -r /ws/install /ws/repo/.ws || exit $?
