@@ -35,4 +35,4 @@ echo ''
 echo '======== Checking the result ========'
 echo ''
 
-cd "${GITHUB_WORKSPACE}" && ls -R .ws || exit $?
+cd "${GITHUB_WORKSPACE}" && ls && ls -R .ws || exit $?
