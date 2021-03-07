@@ -23,7 +23,7 @@ docker build \
   -t ros2-ci:latest /ros2 || exit $?
 
 echo 'Copying the repository files...'
-cp -r "${GITHUB_WORKSPACE}" /ws/repo || exit $?
+mkdir -p /ws && cp -r "${GITHUB_WORKSPACE}" /ws/repo || exit $?
 
 echo 'Running the ROS 2 container...'
 docker run \
