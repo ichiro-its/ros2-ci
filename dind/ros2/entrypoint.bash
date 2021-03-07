@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ls -R /ws || exit $?
+sleep 10
+cd /ws/repo && ls -R || exit $?
 
 echo "loading the ROS 2 ${ROS2_DISTRO} environment..."
 eval "source /opt/ros/${ROS2_DISTRO}/setup.sh" || exit $?
