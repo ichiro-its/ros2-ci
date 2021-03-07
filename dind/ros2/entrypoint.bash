@@ -21,8 +21,16 @@ echo ''
 
 cd /ws && colcon build \
   --event-handlers console_cohesion+ \
-  --cmake-args \
-  --symlink-install || exit $?
+  --cmake-args || exit $?
+
+echo ''
+echo '======== Copying the build result ========'
+echo ''
+
+mkdir -p /ws/repo/.ws
+cp -r /ws/build /ws/repo/.ws
+cp -r /ws/log /ws/repo/.ws
+cp -r /ws/install /ws/repo/.ws
 
 if [ ! -z "$POST_BUILD" ]; then
   echo ''

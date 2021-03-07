@@ -26,3 +26,5 @@ jobs:
           post-build: neofetch
           pre-test: FOO=fofofo
           post-test: test "${FOO}" = 'fofofo'
+      - name: Test the output
+        run: ls .ws && test -d .ws/log

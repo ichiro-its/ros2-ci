@@ -5,6 +5,7 @@ Build and test your [ROS 2](https://docs.ros.org/en/foxy/) project using [GitHub
 ## Usage
 
 Create a new workflow configuration on `.github/workflows` with the following content:
+
 ```yaml
 name: ROS 2 CI
 on:
@@ -22,12 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
       - name: Build and test
-        uses: ichiro-its/ros2-ci@v0.3.0
+        uses: ichiro-its/ros2-ci@v0.3.1
         with:
           ros2-distro: foxy
           pre-build: apt-get update && apt-get install -y libssl-dev
 ```
-> For more information, see [action.yml](./action.yml) and [this guide](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions).
+
+The build result will be put in the `.ws` directory under the project's repository.
+For more information, see the [action.yml](./action.yml) and [this guide](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions).
 
 ## License
 
