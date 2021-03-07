@@ -30,3 +30,9 @@ docker run \
   --env PRE_TEST="${PRE_TEST}" \
   --env POST_TEST="${POST_TEST}" \
   --rm ros2-ci:latest || exit $?
+
+echo ''
+echo '======== Checking the result ========'
+echo ''
+
+cd "${GITHUB_WORKSPACE}" && ls -R .ws || exit $?
