@@ -13,8 +13,6 @@ echo ''
 dockerd-entrypoint.sh &
 sleep 10
 
-# mkdir "/ros2/ws" && cp -r "${GITHUB_WORKSPACE}" "/ros2/ws" || exit $?
-
 echo ''
 echo '======== Building the ROS 2 image ========'
 echo ''

@@ -27,4 +27,4 @@ jobs:
           pre-test: FOO=fofofo
           post-test: test "${FOO}" = 'fofofo'
       - name: Test the output
-        run: ls .ws && test -d .ws/log
+        run: cd "${GITHUB_WORKSPACE}" && ls .ws && test -d .ws/log
