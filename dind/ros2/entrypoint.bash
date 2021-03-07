@@ -1,9 +1,8 @@
 #!/bin/bash
 
-sleep 10
 cd /ws/repo && ls -R || exit $?
 
-echo "loading the ROS 2 ${ROS2_DISTRO} environment..."
+echo "Loading the ROS 2 ${ROS2_DISTRO} environment..."
 eval "source /opt/ros/${ROS2_DISTRO}/setup.sh" || exit $?
 
 if [ ! -z "$PRE_BUILD" ]; then
@@ -55,7 +54,7 @@ if [ ! -z "$POST_TEST" ]; then
   echo "$POST_TEST" && eval "$POST_TEST" || exit $?
 fi
 
-echo 'copying the build result...'
+echo 'Copying the build result...'
 mkdir -p /ws/repo/.ws || exit $?
 cp -r /ws/build /ws/repo/.ws || exit $?
 cp -r /ws/log /ws/repo/.ws || exit $?
