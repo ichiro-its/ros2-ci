@@ -22,6 +22,8 @@ docker build \
   --build-arg ROS2_DISTRO="${ROS2_DISTRO}" \
   -t ros2-ci:latest /ros2 || exit $?
 
+cd "${GITHUB_WORKSPACE}" && ls -R || exit $?
+
 echo 'running the ROS 2 container...'
 docker run \
   -v "${GITHUB_WORKSPACE}":/ws/repo \
