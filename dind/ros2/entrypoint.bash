@@ -1,11 +1,7 @@
 #!/bin/bash
 
-echo ''
-echo '======== Loading the ROS 2 environment ========'
-echo ''
-
-CMD="source /opt/ros/${ROS2_DISTRO}/setup.sh"
-echo "$CMD" && eval "$CMD" || exit $?
+echo "loading the ROS 2 ${ROS2_DISTRO} environment..."
+eval "source /opt/ros/${ROS2_DISTRO}/setup.sh" || exit $?
 
 if [ ! -z "$PRE_BUILD" ]; then
   echo ''
@@ -23,14 +19,11 @@ cd /ws && colcon build \
   --event-handlers console_cohesion+ \
   --cmake-args || exit $?
 
-echo ''
-echo '======== Copying the build result ========'
-echo ''
-
-mkdir -p /ws/repo/.ws
-cp -r /ws/build /ws/repo/.ws
-cp -r /ws/log /ws/repo/.ws
-cp -r /ws/install /ws/repo/.ws
+echo 'copying the build result...'
+mkdir -p /ws/repo/.ws || exit $?
+cp -r /ws/build /ws/repo/.ws || exit $?
+cp -r /ws/log /ws/repo/.ws || exit $?
+cp -r /ws/install /ws/repo/.ws || exit $?
 
 if [ ! -z "$POST_BUILD" ]; then
   echo ''

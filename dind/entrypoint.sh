@@ -24,12 +24,9 @@ docker build \
   --build-arg ROS2_DISTRO="${ROS2_DISTRO}" \
   -t ros2-ci:latest /ros2 || exit $?
 
-echo ''
-echo '======== Running the ROS 2 container ========'
-echo ''
-
+echo 'running the ROS 2 container...'
 docker run \
-  --mount type=bind,source="${GITHUB_WORKSPACE}",target=/ws/repo \
+  -v "${GITHUB_WORKSPACE}":/ws/repo \
   --env PRE_BUILD="${PRE_BUILD}" \
   --env POST_BUILD="${POST_BUILD}" \
   --env PRE_TEST="${PRE_TEST}" \
