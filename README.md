@@ -9,11 +9,9 @@ Create a new workflow configuration on `.github/workflows` with the following co
 name: ROS 2 CI
 on:
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
   push:
-    branches:
-      - master
+    branches: [ master ]
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -22,10 +20,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
       - name: Build and test
-        uses: ichiro-its/ros2-ci@v0.3.0
+        uses: ichiro-its/ros2-ci@v0.4.0
         with:
           ros2-distro: foxy
-          pre-build: apt-get update && apt-get install -y libssl-dev
+          apt-packages: libssl-dev libopencv-dev
+          post-build: ros2 pkg list
 ```
 > For more information, see [action.yml](./action.yml) and [this guide](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions).
 

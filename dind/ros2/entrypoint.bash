@@ -7,6 +7,30 @@ echo ''
 CMD="source /opt/ros/${ROS2_DISTRO}/setup.sh"
 echo "$CMD" && eval "$CMD" || exit $?
 
+if [ ! -z "$PRE_INSTALL" ]; then
+  echo ''
+  echo '======== Running the pre-install command ========'
+  echo ''
+
+  echo "$PRE_INSTALL" && eval "$PRE_INSTALL" || exit $?
+fi
+
+if [ ! -z "$APT_PACKAGES" ]; then
+  echo ''
+  echo '======== Installing APT packages ========'
+  echo ''
+
+  echo "$APT_PACKAGES" && apt-get update && apt-get install -y $APT_PACKAGES || exit $?
+fi
+
+if [ ! -z "$POST_INSTALL" ]; then
+  echo ''
+  echo '======== Running the post-install command ========'
+  echo ''
+
+  echo "$POST_INSTALL" && eval "$POST_INSTALL" || exit $?
+fi
+
 if [ ! -z "$PRE_BUILD" ]; then
   echo ''
   echo '======== Running the pre-build command ========'
@@ -21,8 +45,7 @@ echo ''
 
 cd /ws && colcon build \
   --event-handlers console_cohesion+ \
-  --cmake-args \
-  --symlink-install || exit $?
+  --cmake-args || exit $?
 
 if [ ! -z "$POST_BUILD" ]; then
   echo ''
