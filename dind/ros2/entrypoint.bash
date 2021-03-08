@@ -23,6 +23,14 @@ if [ ! -z "$APT_PACKAGES" ]; then
   echo "$APT_PACKAGES" && apt-get update && apt-get install -y $APT_PACKAGES || exit $?
 fi
 
+if [ ! -z "$PIP_PACKAGES" ]; then
+  echo ''
+  echo '======== Installing pip packages ========'
+  echo ''
+
+  echo "$PIP_PACKAGES" && pip3 install $PIP_PACKAGES || exit $?
+fi
+
 if [ ! -z "$POST_INSTALL" ]; then
   echo ''
   echo '======== Running the post-install command ========'
