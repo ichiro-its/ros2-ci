@@ -12,7 +12,7 @@ inputs:
   apt-packages:
     description: "APT packages to be installed as dependencies."
     required: false
-  apt-packages:
+  pip-packages:
     description: "Pip packages to be installed as dependencies."
     required: false
   pre-install:
