@@ -26,8 +26,9 @@ jobs:
           post-build: neofetch
           pre-test: GOO=gogogo
           post-test: test "${FOO}${GOO}" = 'fofofogogogo'
-      - name: Test with APT install
+      - name: Test with APT and pip install
         uses: ./
         with:
           apt-packages: neofetch libopencv-dev
-          post-install: neofetch && opencv_version
+          pip-packages: numpy matplotlib
+          post-install: neofetch && opencv_version && python3 -c 'import numpy; import matplotlib'
