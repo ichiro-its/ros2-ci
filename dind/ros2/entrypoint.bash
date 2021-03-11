@@ -12,7 +12,7 @@ if [ ! -z "$PRE_INSTALL" ]; then
   echo '======== Running the pre-install command ========'
   echo ''
 
-  echo "$PRE_INSTALL" && eval "$PRE_INSTALL" || exit $?
+  cd /ws/repo && echo "$PRE_INSTALL" && eval "$PRE_INSTALL" || exit $?
 fi
 
 if [ ! -z "$APT_PACKAGES" ]; then
@@ -36,7 +36,7 @@ if [ ! -z "$POST_INSTALL" ]; then
   echo '======== Running the post-install command ========'
   echo ''
 
-  echo "$POST_INSTALL" && eval "$POST_INSTALL" || exit $?
+  cd /ws/repo && echo "$POST_INSTALL" && eval "$POST_INSTALL" || exit $?
 fi
 
 if [ ! -z "$PRE_BUILD" ]; then
@@ -44,7 +44,7 @@ if [ ! -z "$PRE_BUILD" ]; then
   echo '======== Running the pre-build command ========'
   echo ''
 
-  echo "$PRE_BUILD" && eval "$PRE_BUILD" || exit $?
+  cd /ws/repo && echo "$PRE_BUILD" && eval "$PRE_BUILD" || exit $?
 fi
 
 echo ''
@@ -55,12 +55,18 @@ cd /ws && colcon build \
   --event-handlers console_cohesion+ \
   --cmake-args || exit $?
 
+mkdir /ws/repo/.ws \
+  && cp -r /ws/build /ws/repo/.ws \
+  && cp -r /ws/log /ws/repo/.ws \
+  && cp -r /ws/install /ws/repo/.ws \
+  || exit $?
+
 if [ ! -z "$POST_BUILD" ]; then
   echo ''
   echo '======== Running the post-build command ========'
   echo ''
 
-  echo "$POST_BUILD" && eval "$POST_BUILD" || exit $?
+  cd /ws/repo && echo "$POST_BUILD" && eval "$POST_BUILD" || exit $?
 fi
 
 if [ ! -z "$PRE_TEST" ]; then
@@ -68,7 +74,7 @@ if [ ! -z "$PRE_TEST" ]; then
   echo '======== Running the pre-test command ========'
   echo ''
 
-  echo "$PRE_TEST" && eval "$PRE_TEST" || exit $?
+  cd /ws/repo && echo "$PRE_TEST" && eval "$PRE_TEST" || exit $?
 fi
 
 echo ''
@@ -85,5 +91,5 @@ if [ ! -z "$POST_TEST" ]; then
   echo '======== Running the post-test command ========'
   echo ''
 
-  echo "$POST_TEST" && eval "$POST_TEST" || exit $?
+  cd /ws/repo && echo "$POST_TEST" && eval "$POST_TEST" || exit $?
 fi
