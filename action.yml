@@ -9,23 +9,39 @@ inputs:
     description: "The ROS 2 distribution to be used."
     required: false
     default: "foxy"
+  apt-packages:
+    description: "APT packages to be installed as dependencies."
+    required: false
+  pip-packages:
+    description: "Pip packages to be installed as dependencies."
+    required: false
+  pre-install:
+    description: "The command to be run before the APT and pip install process."
+    required: false
+  post-install:
+    description: "The command to be run after the APT and pip install process."
+    required: false
   pre-build:
-    description: "Command to be run before the build process."
+    description: "The command to be run before the build process."
     required: false
   post-build:
-    description: "Command to be run after the build process."
+    description: "The command to be run after the build process."
     required: false
   pre-test:
-    description: "Command to be run before the test process."
+    description: "The command to be run before the test process."
     required: false
   post-test:
-    description: "Command to be run after the test process."
+    description: "The command to be run after the test process."
     required: false
 runs:
   using: 'docker'
   image: 'dind/Dockerfile'
   args:
     - '${{ inputs.ros2-distro }}'
+    - '${{ inputs.apt-packages }}'
+    - '${{ inputs.pip-packages }}'
+    - '${{ inputs.pre-install }}'
+    - '${{ inputs.post-install }}'
     - '${{ inputs.pre-build }}'
     - '${{ inputs.post-build }}'
     - '${{ inputs.pre-test }}'
