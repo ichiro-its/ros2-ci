@@ -16,7 +16,7 @@ Before the build process, the project files will be put under the `/ws/repo` dir
 Then, the build and test process will be done using [colcon](https://colcon.readthedocs.io/en/released/index.html) inside the `/ws` directory and the results (`build`, `install`, and `log`) will be copied inside the `/ws/repo/.ws`.
 
 The drawback of using this action is it still needs to install external dependencies that haven't been included in the ROS 2 default installation.
-But that problem could be solved by adding a `apt-packages` or a `pip-packages` input inside the action configuration (See [this](#Install-Several-Dependencies)) or by cloning external packages inside the `/ws` directory before the build process happens (See [this](#Include-External-Project)).
+But that problem could be solved by adding a `apt-packages` or a `pip-packages` input inside the action configuration (see [this](#Install-Several-Dependencies)) or by cloning external packages inside the `/ws` directory before the build process happens (see [this](#Include-External-Project)).
 
 ## Usage
 
