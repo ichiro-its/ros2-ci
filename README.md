@@ -13,7 +13,8 @@ Although, The CI process is guaranteed to be fast (approximately 3-5 minutes, de
 
 To be able to build and test the project inside the repository, This action requires [the Checkout action](https://github.com/marketplace/actions/checkout).
 Before the build process, the project files will be put under the `/ws/repo` directory inside the container.
-Then, the build and test process will be done using [colcon](https://colcon.readthedocs.io/en/released/index.html) inside the `/ws` directory and the results (`build`, `install`, and `log`) will be copied inside the `/ws/repo/.ws`.
+Then, the build and test process will be done using [colcon](https://colcon.readthedocs.io/en/released/index.html) inside the `/ws` directory.
+After the test process happens, the build results (`build`, `install`, and `log`) will be copied inside the `/ws/repo/.ws`.
 
 The drawback of using this action is it still needs to install external dependencies that haven't been included in the ROS 2 default installation.
 But that problem could be solved by adding a `apt-packages` or a `pip-packages` input inside the action configuration (see [this](#Install-Several-Dependencies)) or by cloning external packages inside the `/ws` directory before the build process happens (see [this](#Include-External-Project)).
@@ -39,7 +40,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
       - name: Build and test
-        uses: ichiro-its/ros2-ci@v0.4.0
+        uses: ichiro-its/ros2-ci@v0.4.1
 ```
 > This will be defaulted to use [ROS 2 Foxy Fitzroy](https://docs.ros.org/en/foxy/Releases/Release-Foxy-Fitzroy.html).
 
@@ -47,7 +48,7 @@ jobs:
 
 ```yaml
 - name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.0
+  uses: ichiro-its/ros2-ci@v0.4.1
   with:
     ros2-distro: rolling
 ```
@@ -56,7 +57,7 @@ jobs:
 
 ```yaml
 - name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.0
+  uses: ichiro-its/ros2-ci@v0.4.1
   with:
     apt-packages: libssh-dev libopencv-dev
 ```
@@ -65,16 +66,16 @@ jobs:
 
 ```yaml
 - name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.0
+  uses: ichiro-its/ros2-ci@v0.4.1
   with:
-    post-build: ls .ws
+    post-test: ls .ws
 ```
 
 ### Include External Project
 
 ```yaml
 - name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.0
+  uses: ichiro-its/ros2-ci@v0.4.1
   with:
     apt-packages: git
     pre-build: git clone https://github.com/ros2/examples /ws/examples

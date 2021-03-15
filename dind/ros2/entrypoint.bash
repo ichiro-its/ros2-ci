@@ -55,12 +55,6 @@ cd /ws && colcon build \
   --event-handlers console_cohesion+ \
   --cmake-args || exit $?
 
-mkdir /ws/repo/.ws \
-  && cp -r /ws/build /ws/repo/.ws \
-  && cp -r /ws/log /ws/repo/.ws \
-  && cp -r /ws/install /ws/repo/.ws \
-  || exit $?
-
 if [ ! -z "$POST_BUILD" ]; then
   echo ''
   echo '======== Running the post-build command ========'
@@ -85,6 +79,12 @@ cd /ws && colcon test \
   --event-handlers console_cohesion+ \
   --pytest-with-coverage \
   --return-code-on-test-failure || exit $?
+
+mkdir /ws/repo/.ws \
+  && cp -r /ws/build /ws/repo/.ws \
+  && cp -r /ws/log /ws/repo/.ws \
+  && cp -r /ws/install /ws/repo/.ws \
+  || exit $?
 
 if [ ! -z "$POST_TEST" ]; then
   echo ''
