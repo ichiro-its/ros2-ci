@@ -35,5 +35,6 @@ jobs:
       - name: Test with including external project
         uses: ./
         with:
-          apt-packages: git
+          ros2-distro: foxy
+          apt-packages: git ros-foxy-example-interfaces
           pre-build: git clone https://github.com/ros2/examples /ws/examples
