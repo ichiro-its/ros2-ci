@@ -55,6 +55,8 @@ cd /ws && colcon build \
   --event-handlers console_cohesion+ \
   --cmake-args || exit $?
 
+source install/setup.bash || exit $?
+
 if [ ! -z "$POST_BUILD" ]; then
   echo ''
   echo '======== Running the post-build command ========'
