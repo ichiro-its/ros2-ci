@@ -1,6 +1,8 @@
 # ROS 2 Continuous Integration
 
-<a href="https://github.com/ichiro-its/ros2-ci/actions"><img alt="GitHub Actions status" src="https://github.com/ichiro-its/ros2-ci/actions/workflows/test-ros2-ci.yml/badge.svg"></a>
+[![latest version](https://img.shields.io/github/v/release/ichiro-its/ros2-ci.svg)](https://github.com/ichiro-its/ros2-ci/releases/)
+[![license](https://img.shields.io/github/license/ichiro-its/ros2-ci.svg)](./LICENSE)
+[![workflows test status](https://github.com/ichiro-its/ros2-ci/actions/workflows/workflows-test.yml/badge.svg)](https://github.com/ichiro-its/ros2-ci/actions)
 
 This action could be used as [a continuous integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration) to build and test a [ROS 2](https://docs.ros.org/en/foxy/) project.
 
@@ -26,29 +28,28 @@ For more information, see [the action.yml](./action.yml) and [the GitHub Actions
 ### Default Usage
 
 ```yaml
-name: ROS 2 CI
+name: Build and Test
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    name: Build and test the project
     steps:
-      - name: Checkout
+      - name: Checking out
         uses: actions/checkout@v2.3.4
-      - name: Build and test
-        uses: ichiro-its/ros2-ci@v0.4.1
+      - name: Building and testing
+        uses: ichiro-its/ros2-ci@v0.4.2
 ```
 > This will be defaulted to use [ROS 2 Foxy Fitzroy](https://docs.ros.org/en/foxy/Releases/Release-Foxy-Fitzroy.html).
 
 ### Using Different ROS 2 Distributin
 
 ```yaml
-- name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.1
+- name: Building and testing
+  uses: ichiro-its/ros2-ci@v0.4.2
   with:
     ros2-distro: rolling
 ```
@@ -56,8 +57,8 @@ jobs:
 ### Install Several Dependencies
 
 ```yaml
-- name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.1
+- name: Building and testing
+  uses: ichiro-its/ros2-ci@v0.4.2
   with:
     apt-packages: libssh-dev libopencv-dev
 ```
@@ -65,8 +66,8 @@ jobs:
 ### Run Command During the Process
 
 ```yaml
-- name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.1
+- name: Building and testing
+  uses: ichiro-its/ros2-ci@v0.4.2
   with:
     post-test: ls .ws
 ```
@@ -74,8 +75,8 @@ jobs:
 ### Include External Project
 
 ```yaml
-- name: Build and test
-  uses: ichiro-its/ros2-ci@v0.4.1
+- name: Building and testing
+  uses: ichiro-its/ros2-ci@v0.4.2
   with:
     apt-packages: git
     pre-build: git clone https://github.com/ros2/examples /ws/examples

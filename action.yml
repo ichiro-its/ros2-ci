@@ -2,7 +2,7 @@ name: 'ROS 2 CI'
 description: 'Continuous integration for ROS 2 project'
 author: "Ichiro ITS"
 branding:
-  icon: "box"
+  icon: "activity"
   color: "gray-dark"
 inputs:
   ros2-distro:
