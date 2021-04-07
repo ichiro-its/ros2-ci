@@ -1,23 +1,22 @@
-name: Test ROS 2 CI
+name: Workflows Test
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
-  test:
+  workflows-test:
     runs-on: ubuntu-latest
-    name: Test the ROS 2 CI
     steps:
       - name: Checking out
         uses: actions/checkout@v2.3.4
-      - name: Test the default configuration
+      - name: Testing the default configuration
         uses: ./
-      - name: Test with different distribution
+      - name: Testing with different distribution
         uses: ./
         with:
           ros2-distro: rolling
-      - name: Test with commands
+      - name: Testing with commands
         uses: ./
         with:
           pre-install: FOO=fofofo
@@ -26,13 +25,13 @@ jobs:
           post-build: cat ./LICENSE && cat ./README.md
           pre-test: GOO=gogogo
           post-test: test "${FOO}${GOO}" = 'fofofogogogo'
-      - name: Test with APT and pip install
+      - name: Testing with APT and pip install
         uses: ./
         with:
           apt-packages: neofetch libopencv-dev
           pip-packages: numpy matplotlib
           post-install: neofetch && opencv_version && python3 -c 'import numpy; import matplotlib'
-      - name: Test with including external project
+      - name: Testing with including external project
         uses: ./
         with:
           ros2-distro: foxy
