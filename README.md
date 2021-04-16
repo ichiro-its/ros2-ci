@@ -72,14 +72,14 @@ jobs:
     post-test: ls .ws
 ```
 
-### Include External Project
+### Include External Repositories
 
 ```yaml
 - name: Building and testing
   uses: ichiro-its/ros2-ci@v0.4.2
   with:
-    apt-packages: git
-    pre-build: git clone https://github.com/ros2/examples /ws/examples
+    ros2-distro: foxy
+    external-repos: https://github.com/ros2/example_interfaces#foxy ros2/examples#foxy
 ```
 
 ## License
