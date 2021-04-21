@@ -15,6 +15,9 @@ inputs:
   pip-packages:
     description: "Pip packages to be installed as dependencies."
     required: false
+  external-repos:
+    description: "External repositories to be included as dependencies."
+    required: false
   pre-install:
     description: "The command to be run before the APT and pip install process."
     required: false
@@ -40,6 +43,7 @@ runs:
     - '${{ inputs.ros2-distro }}'
     - '${{ inputs.apt-packages }}'
     - '${{ inputs.pip-packages }}'
+    - '${{ inputs.external-repos }}'
     - '${{ inputs.pre-install }}'
     - '${{ inputs.post-install }}'
     - '${{ inputs.pre-build }}'

@@ -1,14 +1,15 @@
 #!/bin/sh
 
-ROS2_DISTRO="$1"
-APT_PACKAGES="$2"
-PIP_PACKAGES="$3"
-PRE_INSTALL="$4"
-POST_INSTALL="$5"
-PRE_BUILD="$6"
-POST_BUILD="$7"
-PRE_TEST="$8"
-POST_TEST="$9"
+ROS2_DISTRO="${1}"
+APT_PACKAGES="${2}"
+PIP_PACKAGES="${3}"
+EXTERNAL_REPOS="${4}"
+PRE_INSTALL="${5}"
+POST_INSTALL="${6}"
+PRE_BUILD="${7}"
+POST_BUILD="${8}"
+PRE_TEST="${9}"
+POST_TEST="${10}"
 
 echo ''
 echo '======== Running the Docker daemon ========'
@@ -35,6 +36,7 @@ echo ''
 docker run \
   --env APT_PACKAGES="${APT_PACKAGES}" \
   --env PIP_PACKAGES="${PIP_PACKAGES}" \
+  --env EXTERNAL_REPOS="${EXTERNAL_REPOS}" \
   --env PRE_INSTALL="${PRE_INSTALL}" \
   --env POST_INSTALL="${POST_INSTALL}" \
   --env PRE_BUILD="${PRE_BUILD}" \
