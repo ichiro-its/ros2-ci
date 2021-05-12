@@ -10,6 +10,6 @@ COPY ws /ws
 COPY entrypoint.bash /bin/entrypoint.bash
 RUN chmod +x /bin/entrypoint.bash
 
-RUN apt-get update && apt-get install -y git python3-pip
+RUN apt-get update && apt-get install -y curl git python3-pip wget
 
 ENTRYPOINT ["entrypoint.bash"]
