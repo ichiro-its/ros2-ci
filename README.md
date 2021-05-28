@@ -7,6 +7,9 @@
 
 This action could be used as a [continuous integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration) to build and test a [ROS 2](https://docs.ros.org/en/foxy/) project.
 
+> **Warn!** this action is no longer in development and will be discontinued.
+> Further development of build and test action for a ROS 2 project will be continued on [ROS 2 Build and Test Action](https://github.com/ichiro-its/ros2-build-and-test-action).
+
 ## How It Works?
 
 This action works by building and testing a ROS 2 project inside a [Docker](https://www.docker.com/)'s container using the [official ROS 2 Docker image](https://hub.docker.com/_/ros).
