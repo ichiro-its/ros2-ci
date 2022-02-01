@@ -94,12 +94,14 @@ else
   echo ''
   echo '======== Install packages via repos file ========'
   echo ''
-  ls /ws
-  ls /ws/repo
-  cat /ws/repo/"$REPOS_FILEPATH"
   cd /ws && vcs import repo < /ws/repo/"$REPOS_FILEPATH"
 fi
 
+echo ''
+echo '======== Install depends via rosdep ========'
+echo ''
+
+rosdep install -iry --from-paths /ws/repo/ --rosdistro ${ROS2_DISTRO}
 
 echo ''
 echo '======== Building the workspace ========'
