@@ -36,6 +36,10 @@ inputs:
   post-test:
     description: "The command to be run after the test process."
     required: false
+  repos-filepath:
+    description: "File path of .repos file"
+    required: false
+    default: ""
 runs:
   using: 'docker'
   image: 'dind/Dockerfile'
@@ -50,3 +54,4 @@ runs:
     - '${{ inputs.post-build }}'
     - '${{ inputs.pre-test }}'
     - '${{ inputs.post-test }}'
+    - '${{ inputs.repos-filepath }}'

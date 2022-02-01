@@ -10,6 +10,7 @@ PRE_BUILD="${7}"
 POST_BUILD="${8}"
 PRE_TEST="${9}"
 POST_TEST="${10}"
+REPOS_FILEPATH="${11}"
 
 echo ''
 echo '======== Running the Docker daemon ========'
@@ -43,4 +44,5 @@ docker run \
   --env POST_BUILD="${POST_BUILD}" \
   --env PRE_TEST="${PRE_TEST}" \
   --env POST_TEST="${POST_TEST}" \
+  --env REPOS_FILEPATH="${REPOS_FILEPATH}" \
   --rm ros2-ci:latest || exit $?

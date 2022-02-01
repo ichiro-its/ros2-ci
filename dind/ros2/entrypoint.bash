@@ -86,6 +86,16 @@ then
   cd /ws/repo && echo "$PRE_BUILD" && eval "$PRE_BUILD" || exit $?
 fi
 
+if [ "$REPOS_FILEPATH" = "" ]; then
+else
+  echo ''
+  echo '======== Install packages via repos file ========'
+  echo ''
+
+  cd /ws && vcs import src < "$REPOS_FILEPATH"
+fi
+
+
 echo ''
 echo '======== Building the workspace ========'
 echo ''
