@@ -87,6 +87,9 @@ then
 fi
 
 if [ "$REPOS_FILEPATH" = "" ]; then
+  echo ''
+  echo '======== Skipping install packages via repos file ========'
+  echo ''
 else
   echo ''
   echo '======== Install packages via repos file ========'
