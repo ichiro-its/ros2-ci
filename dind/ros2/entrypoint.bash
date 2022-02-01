@@ -94,6 +94,8 @@ else
   echo ''
   echo '======== Install packages via repos file ========'
   echo ''
+  ls /ws
+  ls /ws/src
   cat /ws/src/"$REPOS_FILEPATH"
   cd /ws && vcs import src < /ws/src/"$REPOS_FILEPATH"
 fi
