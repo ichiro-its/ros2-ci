@@ -102,6 +102,8 @@ echo ''
 echo '======== Install depends via rosdep ========'
 echo ''
 
+rosdep init
+rosdep update
 rosdep install -iry --from-paths /ws/repo/ --rosdistro ${ROS2_DISTRO}
 
 echo ''
