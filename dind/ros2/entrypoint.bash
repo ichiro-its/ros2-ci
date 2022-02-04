@@ -105,7 +105,7 @@ echo ''
 rm -rf /etc/ros/rosdep/sources.list.d/20-default.list
 rosdep init
 rosdep update
-rosdep install -iry --from-paths /ws/repo/ --rosdistro ${ROS2_DISTRO}
+rosdep install -iry --rosdistro ${ROS2_DISTRO} --from-paths /ws/repo/ /ws/repo/depends
 
 echo ''
 echo '======== Building the workspace ========'
