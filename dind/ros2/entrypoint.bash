@@ -13,7 +13,7 @@ then
   echo '======== Running the pre-install command ========'
   echo ''
 
-  cd /ws/repo && echo "$PRE_INSTALL" && eval "$PRE_INSTALL" || exit $?
+  cd /ws/src && echo "$PRE_INSTALL" && eval "$PRE_INSTALL" || exit $?
 fi
 
 if [ ! -z "$APT_PACKAGES" ]
@@ -74,7 +74,7 @@ then
   echo '======== Running the post-install command ========'
   echo ''
 
-  cd /ws/repo && echo "$POST_INSTALL" && eval "$POST_INSTALL" || exit $?
+  cd /ws/src && echo "$POST_INSTALL" && eval "$POST_INSTALL" || exit $?
 fi
 
 if [ ! -z "$PRE_BUILD" ]
@@ -83,7 +83,7 @@ then
   echo '======== Running the pre-build command ========'
   echo ''
 
-  cd /ws/repo && echo "$PRE_BUILD" && eval "$PRE_BUILD" || exit $?
+  cd /ws/src && echo "$PRE_BUILD" && eval "$PRE_BUILD" || exit $?
 fi
 
 if [ "$REPOS_FILEPATH" = "" ]; then
@@ -94,8 +94,8 @@ else
   echo ''
   echo '======== Install packages via repos file ========'
   echo ''
-  mkdir /ws/repo/depends
-  cd /ws && vcs import /ws/repo/depends < /ws/repo/"$REPOS_FILEPATH"
+  mkdir /ws/src/depends
+  cd /ws && vcs import /ws/src/depends < /ws/src/"$REPOS_FILEPATH"
 fi
 
 echo ''
@@ -105,7 +105,7 @@ echo ''
 rm -rf /etc/ros/rosdep/sources.list.d/20-default.list
 rosdep init
 rosdep update
-rosdep install -iry --rosdistro ${ROS2_DISTRO} --from-paths /ws/repo/ /ws/repo/depends
+rosdep install -iry --rosdistro ${ROS2_DISTRO} --from-paths /ws/src/ /ws/src/depends
 
 echo ''
 echo '======== Building the workspace ========'
@@ -123,7 +123,7 @@ then
   echo '======== Running the post-build command ========'
   echo ''
 
-  cd /ws/repo && echo "$POST_BUILD" && eval "$POST_BUILD" || exit $?
+  cd /ws/src && echo "$POST_BUILD" && eval "$POST_BUILD" || exit $?
 fi
 
 if [ ! -z "$PRE_TEST" ]
@@ -132,7 +132,7 @@ then
   echo '======== Running the pre-test command ========'
   echo ''
 
-  cd /ws/repo && echo "$PRE_TEST" && eval "$PRE_TEST" || exit $?
+  cd /ws/src && echo "$PRE_TEST" && eval "$PRE_TEST" || exit $?
 fi
 
 echo ''
@@ -144,10 +144,10 @@ cd /ws && colcon test \
   --pytest-with-coverage \
   --return-code-on-test-failure || exit $?
 
-mkdir /ws/repo/.ws \
-  && cp -r /ws/build /ws/repo/.ws \
-  && cp -r /ws/log /ws/repo/.ws \
-  && cp -r /ws/install /ws/repo/.ws \
+mkdir /ws/src/.ws \
+  && cp -r /ws/build /ws/src/.ws \
+  && cp -r /ws/log /ws/src/.ws \
+  && cp -r /ws/install /ws/src/.ws \
   || exit $?
 
 if [ ! -z "$POST_TEST" ]
@@ -156,5 +156,5 @@ then
   echo '======== Running the post-test command ========'
   echo ''
 
-  cd /ws/repo && echo "$POST_TEST" && eval "$POST_TEST" || exit $?
+  cd /ws/src && echo "$POST_TEST" && eval "$POST_TEST" || exit $?
 fi
