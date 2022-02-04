@@ -108,6 +108,12 @@ rosdep update
 rosdep install -iry --rosdistro ${ROS2_DISTRO} --from-paths /ws/src/ /ws/src/depends
 
 echo ''
+echo '======== Check depends ========'
+echo ''
+
+cd /ws/src/depends && ls
+
+echo ''
 echo '======== Listing packages in the workspace ========'
 echo ''
 
