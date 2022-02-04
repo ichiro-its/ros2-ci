@@ -94,8 +94,8 @@ else
   echo ''
   echo '======== Install packages via repos file ========'
   echo ''
-  mkdir /ws/src/depends
-  cd /ws && vcs import /ws/src/depends < /ws/src/"$REPOS_FILEPATH"
+  mkdir /ws/src
+  cd /ws && vcs import /ws/src < /ws/src/"$REPOS_FILEPATH"
 fi
 
 echo ''
@@ -105,13 +105,7 @@ echo ''
 rm -rf /etc/ros/rosdep/sources.list.d/20-default.list
 rosdep init
 rosdep update
-rosdep install -iry --rosdistro ${ROS2_DISTRO} --from-paths /ws/src/ /ws/src/depends
-
-echo ''
-echo '======== Check depends ========'
-echo ''
-
-cd /ws/src/depends && ls
+rosdep install -iry --rosdistro ${ROS2_DISTRO} --from-paths /ws/src/
 
 echo ''
 echo '======== Listing packages in the workspace ========'
