@@ -94,13 +94,16 @@ else
   echo ''
   echo '======== Install packages via repos file ========'
   echo ''
-  cd /ws && vcs import repo < /ws/repo/"$REPOS_FILEPATH"
+  mkdir /ws/repo/depends
+  cd /ws && vcs import /ws/repo/depends < /ws/repo/"$REPOS_FILEPATH"
 fi
 
 echo ''
 echo '======== Install depends via rosdep ========'
 echo ''
 
+rosdep init
+rosdep update
 rosdep install -iry --from-paths /ws/repo/ --rosdistro ${ROS2_DISTRO}
 
 echo ''
