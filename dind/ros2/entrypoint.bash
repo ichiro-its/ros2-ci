@@ -102,6 +102,7 @@ echo ''
 echo '======== Install depends via rosdep ========'
 echo ''
 
+rm -rf /etc/ros/rosdep/sources.list.d/20-default.list
 rosdep init
 rosdep update
 rosdep install -iry --from-paths /ws/repo/ --rosdistro ${ROS2_DISTRO}
