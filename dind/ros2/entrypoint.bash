@@ -95,7 +95,8 @@ else
   echo '======== Install packages via repos file ========'
   echo ''
   mkdir /ws/src
-  cd /ws && vcs import --debug /ws/src < /ws/src/"$REPOS_FILEPATH"
+
+  cd /ws/src && ls | xargs -I{} sh -c 'vcs import . < {}/$REPOS_FILEPATH'
 fi
 
 echo ''
@@ -105,7 +106,7 @@ echo ''
 rm -rf /etc/ros/rosdep/sources.list.d/20-default.list
 rosdep init
 rosdep update
-rosdep install -iry --rosdistro ${ROS2_DISTRO} --from-paths /ws/src/
+rosdep install -iry --rosdistro "$ROS2_DISTRO" --from-paths /ws/src/
 
 echo ''
 echo '======== Listing packages in the workspace ========'
