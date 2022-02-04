@@ -95,8 +95,7 @@ else
   echo '======== Install packages via repos file ========'
   echo ''
   mkdir /ws/src
-
-  cd /ws/src && ls | xargs -I{} sh -c 'vcs import . < {}/$REPOS_FILEPATH'
+  cd /ws && vcs import /ws/src < /ws/src/packages/"$REPOS_FILEPATH"
 fi
 
 echo ''
