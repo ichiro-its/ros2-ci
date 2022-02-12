@@ -11,6 +11,8 @@ POST_BUILD="${8}"
 PRE_TEST="${9}"
 POST_TEST="${10}"
 REPOS_FILEPATH="${11}"
+DOCKER_IMAGE="${12}"
+DOCKER_TAG="${13}"
 
 
 echo ''
@@ -29,6 +31,8 @@ echo ''
 
 docker build \
   --build-arg ROS2_DISTRO="${ROS2_DISTRO}" \
+  --build-arg DOCKER_IMAGE="${DOCKER_IMAGE}" \
+  --build-arg DOCKER_TAG="${DOCKER_TAG}" \
   -t ros2-ci:latest /ros2 || exit $?
 
 echo ''

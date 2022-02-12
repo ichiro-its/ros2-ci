@@ -40,6 +40,14 @@ inputs:
     description: "File path of .repos file"
     required: false
     default: ""
+  docker-image:
+    description: "Name of docker base image."
+    required: false
+    default: "ros"
+  docker-tag:
+    description: "Name of docker tag."
+    required: false
+    default: "foxy"
 runs:
   using: 'docker'
   image: 'dind/Dockerfile'
@@ -55,3 +63,5 @@ runs:
     - '${{ inputs.pre-test }}'
     - '${{ inputs.post-test }}'
     - '${{ inputs.repos-filepath }}'
+    - '${{ inputs.docker-image }}'
+    - '${{ inputs.docker-tag }}'
