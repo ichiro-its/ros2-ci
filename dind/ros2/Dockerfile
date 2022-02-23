@@ -1,6 +1,6 @@
 ARG ROS2_DISTRO=foxy
 
-FROM ros:${ROS2_DISTRO}
+FROM wamvtan/ros2-ci-base:${ROS2_DISTRO}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
