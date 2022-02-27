@@ -16,21 +16,6 @@ jobs:
         uses: ./
         with:
           ros2-distro: rolling
-      - name: Testing with commands
-        uses: ./
-        with:
-          pre-install: FOO=fofofo
-          post-install: test "${FOO}" = 'fofofo'
-          pre-build: curl --version && wget --version
-          post-build: cat ./LICENSE && cat ./README.md
-          pre-test: GOO=gogogo
-          post-test: test "${FOO}${GOO}" = 'fofofogogogo'
-      - name: Testing with APT and pip install
-        uses: ./
-        with:
-          apt-packages: neofetch libopencv-dev
-          pip-packages: numpy matplotlib
-          post-install: neofetch && opencv_version && python3 -c 'import numpy; import matplotlib'
       - name: Testing with including external repositories
         uses: ./
         with:

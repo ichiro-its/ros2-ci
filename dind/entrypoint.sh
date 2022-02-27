@@ -11,6 +11,7 @@ POST_BUILD="${8}"
 PRE_TEST="${9}"
 POST_TEST="${10}"
 REPOS_FILEPATH="${11}"
+WS_BUILD_ARGS="${12}"
 
 
 echo ''
@@ -28,7 +29,8 @@ echo ''
 
 
 docker build \
-  --build-arg ROS2_DISTRO="${ROS2_DISTRO}" \
+  --build-arg distro="${ROS2_DISTRO}" \
+  --build-arg build_options="${WS_BUILD_ARGS}" \
   -t ros2-ci:latest /ros2 || exit $?
 
 echo ''
