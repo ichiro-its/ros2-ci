@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ROS2_DISTRO="${1}"
 APT_PACKAGES="${2}"
@@ -11,7 +11,7 @@ POST_BUILD="${8}"
 PRE_TEST="${9}"
 POST_TEST="${10}"
 REPOS_FILEPATH="${11}"
-WS_BUILD_ARGS="${12}"
+IMAGE_NAME="${12:-wamvtan/ros2-ci-base}"
 
 
 echo ''
@@ -29,8 +29,8 @@ echo ''
 
 
 docker build \
-  --build-arg distro="${ROS2_DISTRO}" \
-  --build-arg build_options="${WS_BUILD_ARGS}" \
+  --build-arg ROS2_DISTRO="${ROS2_DISTRO}" \
+  --build-arg IMAGE_NAME="${IMAGE_NAME}" \
   -t ros2-ci:latest /ros2 || exit $?
 
 echo ''

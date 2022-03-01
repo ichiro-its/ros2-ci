@@ -55,3 +55,4 @@ runs:
     - '${{ inputs.pre-test }}'
     - '${{ inputs.post-test }}'
     - '${{ inputs.repos-filepath }}'
+    - '${{ inputs.image-name }}'
