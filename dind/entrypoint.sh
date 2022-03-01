@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ROS2_DISTRO="${1}"
 APT_PACKAGES="${2}"
