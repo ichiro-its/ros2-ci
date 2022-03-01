@@ -16,6 +16,7 @@ jobs:
         uses: ./
         with:
           ros2-distro: rolling
+          image-name: ros
       - name: Testing with including external repositories
         uses: ./
         with:
