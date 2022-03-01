@@ -87,5 +87,6 @@ jobs:
 ```
 
 ## License
+This action is licensed under the [MIT License](./LICENSE).
+This project is originally created by [ICHIRO ITS](https://github.com/ichiro-its), and maintained continuously by [OUXT Polaris](https://github.com/OUXT-Polaris).
 
-This project is maintained by [ICHIRO ITS](https://github.com/ichiro-its) and licensed under the [MIT License](./LICENSE).

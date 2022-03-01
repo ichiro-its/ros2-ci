@@ -1,6 +1,6 @@
 name: 'ROS 2 CI'
 description: 'Continuous integration for ROS 2 project'
-author: "ICHIRO ITS"
+author: "OUXT Polaris"
 branding:
   icon: "activity"
   color: "gray-dark"
@@ -55,3 +55,4 @@ runs:
     - '${{ inputs.pre-test }}'
     - '${{ inputs.post-test }}'
     - '${{ inputs.repos-filepath }}'
+    - '${{ inputs.image-name }}'
