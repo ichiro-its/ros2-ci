@@ -95,6 +95,7 @@ else
   echo '======== Install packages via repos file ========'
   echo ''
   mkdir /ws/src
+  export PACKAGES=`colcon list -t -n`
   cd /ws && vcs import /ws/src < /ws/src/packages/"$REPOS_FILEPATH"
 fi
 
@@ -117,7 +118,7 @@ echo ''
 echo '======== Building the workspace ========'
 echo ''
 
-cd /ws && colcon build \
+cd /ws && colcon build --packages-up-to $PACKAGES \
   --event-handlers console_cohesion+ \
   --cmake-args || exit $?
 
